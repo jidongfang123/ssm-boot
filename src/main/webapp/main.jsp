@@ -8,31 +8,6 @@
 <jsp:include page="js.jsp"></jsp:include>
 </head>
 <body>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">条件查询</h3>
-	</div>
-	<div class="panel-body">
-		<form class="form-inline">
-			<div class="form-group">
-				<label >文章名称</label>
-				<input type="text" class="form-control" id="fileName" placeholder="请输入名称" >
-			</div>
-		    <div class="form-group">
-			    <label >选择列表</label>
-			    <select class="form-control" id="fileType" >
-			      <option value="">请选择</option>
-			      <option value="1">技术</option>
-			      <option value="2">小说</option>
-			      <option value="3">摘要</option>
-			    </select>
-		    </div>
-		</form>
-	</div>
-	<button type="button" class="btn btn-primary" onclick="searchButton()">搜索</button>
-	<input type="button" class="btn btn-primary" value="添加" onclick="insertFile()"/>
-</div>
-
 
 <table class="table" id="file-table" border="1"></table>
 <script type="text/javascript">
@@ -112,73 +87,8 @@
 	            title: '文章标题:'+title,
 	            message:'文章内容:'+content
 	        }); 
-	    }
-	   //置顶
-	   function topZD(id){
-		   $.ajax({
-				url:"<%=request.getContextPath()%>/bootstrapAction!saveEditTime.action?file.id="+id,
-				type:"post",
-				success:function(data){
-					 $("#file-table").bootstrapTable("refresh")	
-				}
-			})
-	   }
-	   //添加
-	   function insertFile(){
-		   BootstrapDialog.show({
-			 	size: BootstrapDialog.SIZE_LARGE,
-	            title: '添加',
-	            message:$('<div></div>').load('<%=request.getContextPath()%>/bootstrapAction!insertBootstrapTZ.action'),
-	            buttons: [{
-	                label: '保存',
-	                action: function(dialog) {
-	                	$.ajax({
-	                		 type:"post",
-	                		 url:"<%=request.getContextPath()%>/bootstrapAction!insertBootstrap.action",
-	                		 data:$("#insertBootstrapId").serialize(),
-	                		 success:function(msg){
-	                			 dialog.close();
-	                			 searchButton();
-	                		 }
-	                	 })
-	                }
-	            }, {
-	                label: '取消',
-	                action: function(dialog) {
-	                	dialog.close();
-	                }
-	            }]
-
-	        });
-	   }
-	   //修改
-	   function updateFile(updateId){
-		   BootstrapDialog.show({
-			 	size: BootstrapDialog.SIZE_LARGE,
-	            title: '修改',
-	            message:$('<div></div>').load('<%=request.getContextPath()%>/bootstrapAction!updateBootstrapTZ.action?file.id='+updateId),
-	            buttons: [{
-	                label: '保存',
-	                action: function(dialog) {
-	                	$.ajax({
-	                		 type:"post",
-	                		 url:"<%=request.getContextPath()%>/bootstrapAction!updateFile.action",
-	                		 data:$("#updateBootstrapId").serialize(),
-	                		 success:function(){
-	                			 dialog.close();
-	                			 searchButton();
-	                			 alert("修改成功");
-	                		 }
-	                	 })
-	                }
-	            }, {
-	                label: '取消',
-	                action: function(dialog) {
-	                	dialog.close();
-	                }
-	            }]
-
-	        });
+	    
+	  
 	   }
 </script>      
 </body>

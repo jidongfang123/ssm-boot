@@ -28,7 +28,7 @@
     
      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<!-- 返回值的前缀 -->
-        <property name="prefix" value="/WEB-INF/"/>
+        <property name="prefix" value="/"/>
         <!-- 返回值的后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>

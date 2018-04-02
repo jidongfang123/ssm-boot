@@ -18,6 +18,13 @@ public class BookController {
 		@Autowired
 		private BookService bookService;
 		
+		
+		@RequestMapping(value = "selectbook")
+		String selectbook() {
+			return "main";
+		}
+		
+		
 		@RequestMapping(value = "ShowBook")
 		@ResponseBody
 		Map<String , Object> ShowBook(Book book,@NotNull Integer page,@NotNull Integer rows){
