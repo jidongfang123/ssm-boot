@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kdx.mapper.BookMapper">
+  <resultMap id="BaseResultMap" type="com.kdx.pojo.Book">
+    <id column="bookid" jdbcType="INTEGER" property="bookid" />
+    <result column="bookname" jdbcType="VARCHAR" property="bookname" />
+    <result column="booktype" jdbcType="VARCHAR" property="booktype" />
+    <result column="bookprice" jdbcType="INTEGER" property="bookprice" />
+  </resultMap>
+  <select id="showbook" resultMap="BaseResultMap">
+  	select * from book
+  </select>
+</mapper>
