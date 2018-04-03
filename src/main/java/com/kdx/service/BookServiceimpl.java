@@ -20,7 +20,6 @@ public class BookServiceimpl implements BookService{
 	
 	@Override
 	public Map<String, Object> ShowBook(Book book, Integer page, Integer rows) {
-	
 		//需要分页
 		PageHelper.startPage(Integer.valueOf(page), Integer.valueOf(rows));
 		List<Book> list = bookMapper.showbook(book);

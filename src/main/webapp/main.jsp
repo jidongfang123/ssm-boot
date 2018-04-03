@@ -87,8 +87,6 @@
 	            title: '文章标题:'+title,
 	            message:'文章内容:'+content
 	        }); 
-	    
-	  
 	   }
 </script>      
 </body>
