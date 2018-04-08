@@ -29,5 +29,7 @@ public class BookController {
 		@ResponseBody
 		Map<String , Object> ShowBook(Book book,@NotNull Integer page,@NotNull Integer rows){
 			return bookService.ShowBook(book,page,rows);
-			}
 		}
+	
+		
+}

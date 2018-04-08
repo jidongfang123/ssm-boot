@@ -8,6 +8,54 @@
 <jsp:include page="js.jsp"></jsp:include>
 </head>
 <body>
+<div style="margin:0px auto;width:980px;">
+	
+		<br /> <span> <label>姓名：</label> <input id="name"
+			placeholder="请输入姓名" type="text"> </span> <span> <label>性别：</label>
+			<select id="sex" style="height: 24px;width: 163px;">
+				<option value="">请选择性别</option>
+				<option value="1">男</option>
+				<option value="2">女</option>
+		</select> </span> <span> <label>年龄：</label> <input id="age" placeholder="请输入年龄"
+			type="text"> </span>
+		<button class="btn btn-primary" onclick="UserinfoExport()">查询</button>
+		<%-- <form action="${pageContext.request.contextPath}/user/fileUpload" method="post" --%>
+		<form action="${pageContext.request.contextPath}/user/fileUpload" method="post"
+			enctype="multipart/form-data" id="tf">
+			<input id="lefile" type="file" style="display:none" name="file">
+			<div class="input-append" style="position:absolute;;left:1200px;">
+				<input id="photoCover" class="input-large" type="text"
+					readonly="true" style="height:30px;"> <a
+					class="btn btn-primary" onclick="$('input[id=lefile]').click();">选择文件</a>
+				<a class="btn btn-primary" onclick="exceltodata()">导入</a>
+			</div>
+		</form>
+		<script type="text/javascript">
+			$('input[id=lefile]').change(function() {
+				$('#photoCover').val($(this).val());
+			});
+		</script>
+
+
+		<br />
+		<div class="bs-example" data-example-id="contextual-table">
+			<table class="table table-condensed" style="width:680px">
+				<thead>
+					<tr>
+						<th>名字</th>
+						<th>性别</th>
+						<th>年龄</th>
+					</tr>
+				</thead>
+				<tbody id="userinfoContendiv">
+					<!-- <tr class="info">
+						<td>Column content</td>
+						<td>Column content</td>
+						<td>Column content</td>
+					</tr> -->
+				</tbody>
+			</table>
+		</div>
 
 <table class="table" id="file-table" border="1"></table>
 <script type="text/javascript">
@@ -22,7 +70,7 @@
 			   showRefresh:true,//显示刷新按钮
 			   showToggle:true,//显示切换视图
 			   search:false,//是否显示搜索框
-			 //  searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
+		//  searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
 			   pagination:true,//开启分页
 			   paginationLoop:true,//开启分页无限循环
 			   pageNumber:1,//当前页数
@@ -88,6 +136,7 @@
 	            message:'文章内容:'+content
 	        }); 
 	   }
+		
 </script>      
 </body>
 </html>
