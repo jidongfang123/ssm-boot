@@ -33,7 +33,7 @@
     <result column="weekendovertime" jdbcType="VARCHAR" property="weekendovertime" />
     <result column="holidayovertime" jdbcType="VARCHAR" property="holidayovertime" />
   </resultMap>
-  <insert id="insertSelective" parameterType="java.util.List">
+   <insert id="insertSelective" parameterType="java.util.List">
    insert into kdx 
   (timecardid,department, workattendance, workname,
   worktobe, workto, worklate,
@@ -57,6 +57,8 @@
     #{item.parentalleave,jdbcType=VARCHAR},#{item.peacetime,jdbcType=VARCHAR},#{item.weekend,jdbcType=VARCHAR},#{item.festival,jdbcType=VARCHAR},
 	#{item.attendancetime,jdbcType=VARCHAR},#{item.overtimework,jdbcType=VARCHAR},#{item.weekendovertime,jdbcType=VARCHAR},
 	#{item.holidayovertime,jdbcType=VARCHAR},#{item.askforleave,jdbcType=VARCHAR},#{item.notsign,jdbcType=VARCHAR})
-      </foreach>
-  </insert>
+     </foreach>
+  </insert> 
+   
+  
 </mapper>
