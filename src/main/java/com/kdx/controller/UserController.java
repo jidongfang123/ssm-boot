@@ -2,8 +2,12 @@ package com.kdx.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,8 @@ public class UserController {
 	@Autowired
 	private HttpServletRequest request;
 
+	
+		
 	
 	@RequestMapping(value="filesUpload" , method = RequestMethod.POST)
 	public @ResponseBody Object filesUpload(@RequestParam("files") MultipartFile[] files) {

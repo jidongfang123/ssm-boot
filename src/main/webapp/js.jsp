@@ -5,18 +5,11 @@
 <link href="<%=request.getContextPath() %>/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
  <!-- Bootstrap TreeView css -->
 <link href="<%=request.getContextPath() %>/js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
- <!-- Bootstrap addTabs css -->
-<link href="<%=request.getContextPath() %>/js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
-<!-- Bootstrap table css -->
-<link href="<%=request.getContextPath() %>/js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet"> 
-<!-- bootstrap-datetimepicker css -->
-<link href="<%=request.getContextPath() %>/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet"> 
 <!-- bootstrap-dialog css -->
 <link href="<%=request.getContextPath() %>/js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet"> 
 <!-- bootstrap-fileinput css -->
 <link href="<%=request.getContextPath() %>/js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
 <!--jQuery核心js  -->
-<script src="<%=request.getContextPath() %>/js/jquery.min.js"></script>
 <!-- bootstrap 核心js文件 -->
 <script src="<%=request.getContextPath() %>/js/bootstrap/js/bootstrap.min.js"></script>
 <!-- bootStrap TreeView -->
@@ -33,5 +26,3 @@
 <!-- bootstrap-dialog -->
 <script src="<%=request.getContextPath() %>/js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
 <!-- bootstrap-fileinput -->
-<script src="<%=request.getContextPath() %>/js/bootstrap-fileinput/js/fileinput.js"></script>
-<script src="<%=request.getContextPath() %>/js/bootstrap-fileinput/js/locales/zh.js"></script>

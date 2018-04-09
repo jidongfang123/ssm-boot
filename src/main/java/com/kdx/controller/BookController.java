@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kdx.pojo.Book;
+import com.kdx.pojo.Detailed;
 import com.kdx.service.BookService;
+import com.kdx.service.UserService;
 
 @Controller
 public class BookController {
 
 		@Autowired
 		private BookService bookService;
+		@Autowired
+		private UserService userService;
 		
 		
 		@RequestMapping(value = "selectbook")
@@ -30,6 +34,9 @@ public class BookController {
 		Map<String , Object> ShowBook(Book book,@NotNull Integer page,@NotNull Integer rows){
 			return bookService.ShowBook(book,page,rows);
 		}
-	
-		
+		@RequestMapping(value ="showDetailed")
+		@ResponseBody
+		Map<String ,Object> showDetailed(Detailed detailed,Integer page ,Integer rows){
+			return userService.showDetailed(detailed, page,rows);
+		}
 }

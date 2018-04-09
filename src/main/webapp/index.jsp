@@ -13,7 +13,6 @@
 <script type="text/javascript">
 	function selectbook(){
 		location="<%=request.getContextPath()%>/selectbook.do"
-	
 	}
 </script>
 </body>

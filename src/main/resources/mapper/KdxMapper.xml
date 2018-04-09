@@ -59,6 +59,5 @@
 	#{item.holidayovertime,jdbcType=VARCHAR},#{item.askforleave,jdbcType=VARCHAR},#{item.notsign,jdbcType=VARCHAR})
      </foreach>
   </insert> 
-   
   
 </mapper>

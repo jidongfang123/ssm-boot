@@ -11,7 +11,6 @@
 			http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-lazy-init="false">
-
 	<!-- 配置数据库连接池(druid:alibaba) -->
 		<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc_url}" />
@@ -90,5 +89,4 @@
 		<aop:advisor pointcut="execution (* com.kdx.service..*.*(..))"
 					 advice-ref="txAdvice" />
 	</aop:config>
-	
 </beans> 

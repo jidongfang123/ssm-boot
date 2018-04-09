@@ -1,5 +1,4 @@
 package com.kdx.pojo;
-
 public class Kdx {
     private Integer timecardid;
 

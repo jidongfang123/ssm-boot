@@ -12,8 +12,6 @@ public class User {
 	private String studentsex;
 	private String studenage;
 	
-	
-	
 	public String getStudentname() {
 		return studentname;
 	}

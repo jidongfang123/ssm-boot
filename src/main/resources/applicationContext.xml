@@ -22,5 +22,4 @@
 
 	<!-- 加载properties文件 -->
 	<context:property-placeholder location="classpath:datasource.properties" />
-
 </beans> 

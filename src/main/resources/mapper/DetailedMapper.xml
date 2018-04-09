@@ -59,5 +59,17 @@
       #{item.kdxholidayovertime,jdbcType=VARCHAR})
        </foreach>
   </insert>
+<!--   <select id="showDetailed" resultMap="BaseResultMap">
+  	select * from detailed
+  </select> -->
+   <select id="showDetailed" parameterType="com.kdx.pojo.Detailed" resultMap="BaseResultMap">  
+        select  *
+        from detailed 
+        where  1=1    
+        <if test="kdxemployeename != null and kdxemployeename !=''">and kdxemployeename=#{kdxemployeename}</if>  
+        <if test="kdxworkattendance != null and kdxworkattendance !=''">and kdxworkattendance=#{kdxworkattendance}</if> 
+         <if test="starttime != null and starttime != ''">and kdxpaybycard <![CDATA[>=]]> #{starttime}</if>
+ 		<if test="endtime != null and endtime != ''">and kdxpaybycard<![CDATA[<=]]>#{endtime}</if>
+   </select>
   
 </mapper>

@@ -2,7 +2,6 @@ package com.kdx.pojo;
 
 /**
  * @author JiDongFang
- *
  */
 public class Detailed {
     private Integer detailedid;
@@ -31,10 +30,7 @@ public class Detailed {
 
     private String kdxtoo;
     
-    private Integer page; 
-     
-    private Integer rows;
-
+   
 
 	private String kdxlatetime;
 
@@ -67,7 +63,15 @@ public class Detailed {
     private String kdxweekendovertime;
 
     private String kdxholidayovertime;
-
+    
+    private Integer page; 
+    
+    private Integer rows;
+    
+    private String starttime; 
+    
+    private String endtime;
+    
 	public Integer getDetailedid() {
 		return detailedid;
 	}
@@ -300,6 +304,11 @@ public class Detailed {
 		this.kdxholidayovertime = kdxholidayovertime;
 	}
 
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Detailed [detailedid=" + detailedid + ", kdxemployeenumber=" + kdxemployeenumber
@@ -314,7 +323,8 @@ public class Detailed {
 				+ ", kdxdepartment=" + kdxdepartment + ", kdxpeacetime=" + kdxpeacetime + ", kdxweekend=" + kdxweekend
 				+ ", kdxholiday=" + kdxholiday + ", kdxattendancetime=" + kdxattendancetime + ", kdxovertimework="
 				+ kdxovertimework + ", kdxweekendovertime=" + kdxweekendovertime + ", kdxholidayovertime="
-				+ kdxholidayovertime + "]";
+				+ kdxholidayovertime + ", page=" + page + ", rows=" + rows + ", starttime=" + starttime + ", endtime="
+				+ endtime + "]";
 	}
 
 	public Integer getPage() {
@@ -331,6 +341,34 @@ public class Detailed {
 
 	public void setRows(Integer rows) {
 		this.rows = rows;
+	}
+
+	/**
+	 * @return the starttime
+	 */
+	public String getStarttime() {
+		return starttime;
+	}
+
+	/**
+	 * @param starttime the starttime to set
+	 */
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	/**
+	 * @return the endtime
+	 */
+	public String getEndtime() {
+		return endtime;
+	}
+
+	/**
+	 * @param endtime the endtime to set
+	 */
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
 	}
 
 
