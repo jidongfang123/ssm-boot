@@ -2,14 +2,17 @@ package com.kdx.service;
 
 import java.util.List;
 
-import com.kdx.pojo.User;
+import com.kdx.pojo.Detailed;
+import com.kdx.pojo.Kdx;
 
 
 public interface UserService {
 
 
-	public List<User> getUserForExcel(User user);
 
-	int insertStudentlist(List<User> userlist);
+	   int insertSelective(List<Kdx> kdxlist);
+
+	   int insertDetailed(List<Detailed> detailed);
+
 
 }

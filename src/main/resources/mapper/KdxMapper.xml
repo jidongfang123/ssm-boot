@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kdx.mapper.KdxMapper">
+  <resultMap id="BaseResultMap" type="com.kdx.pojo.Kdx">
+    <id column="timecardid" jdbcType="INTEGER" property="timecardid" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="workattendance" jdbcType="INTEGER" property="workattendance" />
+    <result column="workname" jdbcType="VARCHAR" property="workname" />
+    <result column="worktobe" jdbcType="INTEGER" property="worktobe" />
+    <result column="workto" jdbcType="VARCHAR" property="workto" />
+    <result column="worklate" jdbcType="INTEGER" property="worklate" />
+    <result column="leaveearly" jdbcType="INTEGER" property="leaveearly" />
+    <result column="absenteeism" jdbcType="INTEGER" property="absenteeism" />
+    <result column="overtime" jdbcType="INTEGER" property="overtime" />
+    <result column="goout" jdbcType="INTEGER" property="goout" />
+    <result column="workgoout" jdbcType="INTEGER" property="workgoout" />
+    <result column="worktime" jdbcType="INTEGER" property="worktime" />
+    <result column="signnumber" jdbcType="INTEGER" property="signnumber" />
+    <result column="sign" jdbcType="INTEGER" property="sign" />
+    <result column="signout" jdbcType="INTEGER" property="signout" />
+    <result column="notsign" jdbcType="INTEGER" property="notsign" />
+    <result column="notsignout" jdbcType="INTEGER" property="notsignout" />
+    <result column="askforleave" jdbcType="INTEGER" property="askforleave" />
+    <result column="getout" jdbcType="INTEGER" property="getout" />
+    <result column="sickleave" jdbcType="INTEGER" property="sickleave" />
+    <result column="compassionateleave" jdbcType="INTEGER" property="compassionateleave" />
+    <result column="parentalleave" jdbcType="INTEGER" property="parentalleave" />
+    <result column="peacetime" jdbcType="VARCHAR" property="peacetime" />
+    <result column="weekend" jdbcType="VARCHAR" property="weekend" />
+    <result column="festival" jdbcType="VARCHAR" property="festival" />
+    <result column="attendancetime" jdbcType="VARCHAR" property="attendancetime" />
+    <result column="overtimework" jdbcType="VARCHAR" property="overtimework" />
+    <result column="weekendovertime" jdbcType="VARCHAR" property="weekendovertime" />
+    <result column="holidayovertime" jdbcType="VARCHAR" property="holidayovertime" />
+  </resultMap>
+  <insert id="insertSelective" parameterType="java.util.List">
+   insert into kdx 
+  (timecardid,department, workattendance, workname,
+  worktobe, workto, worklate,
+  leaveearly,absenteeism,overtime,
+  goout,workgoout,worktime,
+  signnumber,sign,signout,notsignout,getout,
+  sickleave,compassionateleave, 
+  parentalleave,peacetime,weekend,festival,
+  attendancetime,overtimework,weekendovertime,
+  holidayovertime,askforleave,notsign)
+   values
+    <foreach collection="list" index="index" item="item" separator=",">
+    (#{item.timecardid,jdbcType=VARCHAR},#{item.department,jdbcType=VARCHAR}, #{item.workattendance,jdbcType=VARCHAR}, #{item.workname,jdbcType=VARCHAR},
+	#{item.worktobe,jdbcType=VARCHAR}, #{item.workto,jdbcType=VARCHAR}, #{item.worklate,jdbcType=VARCHAR},
+	#{item.leaveearly,jdbcType=VARCHAR}, #{item.absenteeism,jdbcType=VARCHAR}, #{item.overtime,jdbcType=VARCHAR},
+	#{item.goout,jdbcType=VARCHAR}, #{item.workgoout,jdbcType=VARCHAR}, #{item.worktime,jdbcType=VARCHAR},
+    #{item.signnumber,jdbcType=VARCHAR},#{item.sign,jdbcType=VARCHAR},
+    #{item.signout,jdbcType=VARCHAR},
+    #{item.notsignout,jdbcType=VARCHAR},#{item.getout,jdbcType=VARCHAR},#{item.sickleave,jdbcType=VARCHAR},
+    #{item.compassionateleave,jdbcType=VARCHAR},
+    #{item.parentalleave,jdbcType=VARCHAR},#{item.peacetime,jdbcType=VARCHAR},#{item.weekend,jdbcType=VARCHAR},#{item.festival,jdbcType=VARCHAR},
+	#{item.attendancetime,jdbcType=VARCHAR},#{item.overtimework,jdbcType=VARCHAR},#{item.weekendovertime,jdbcType=VARCHAR},
+	#{item.holidayovertime,jdbcType=VARCHAR},#{item.askforleave,jdbcType=VARCHAR},#{item.notsign,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+</mapper>

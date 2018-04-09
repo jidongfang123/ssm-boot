@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/kdx/controller/UserController.java=UTF-8
-encoding//src/main/java/com/kdx/util/PageAssitant.java=UTF-8
+encoding//src/main/java/com/kdx/util/ExcelDetailed.java=UTF-8
+encoding//src/main/java/com/kdx/util/ExcelTool.java=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
+encoding//src/main/webapp/main.jsp=UTF-8

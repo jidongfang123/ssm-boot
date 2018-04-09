@@ -24,8 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class ExcelTool {
-
+public class ExcelDetailed {
 	public static final String XLSX = ".xlsx";
 	public static final String XLS=".xls";
 
@@ -120,35 +119,34 @@ public class ExcelTool {
 			keyMap.put(j,getValue(firstRow.getCell(j), rowStart, j, book, true));
 		}*/
 		/*	Map<Integer, String> keyMap = new HashMap<Integer, String>();*/
-		keyMap.put(0, "department");
-		keyMap.put(1, "workattendance");
-		keyMap.put(2, "workname");
-		keyMap.put(3, "worktobe");
-		keyMap.put(4, "workto");
-		keyMap.put(5, "worklate");
-		keyMap.put(6, "leaveearly");
-		keyMap.put(7, "absenteeism");
-		keyMap.put(8, "overtime");
-		keyMap.put(9, "goout");
-		keyMap.put(10, "workgoout");
-		keyMap.put(11, "worktime");
-		keyMap.put(12, "signnumber");
-		keyMap.put(13, "sign");
-		keyMap.put(14, "signout");
-		keyMap.put(15, "notsign");
-		keyMap.put(16, "notsignout");
-		keyMap.put(17, "askforleave");
-		keyMap.put(18, "getout");
-		keyMap.put(19, "sickleave");
-		keyMap.put(20, "compassionateleave");
-		keyMap.put(21, "parentalleave");
-		keyMap.put(22, "peacetime");
-		keyMap.put(23, "weekend");
-		keyMap.put(24, "festival");
-		keyMap.put(25, "attendancetime");
-		keyMap.put(26, "overtimework");
-		keyMap.put(27, "weekendovertime");
-		keyMap.put(28, "holidayovertime");
+		keyMap.put(0, "kdxemployeenumber");
+		keyMap.put(1, "kdxworkattendance");
+		keyMap.put(2, "kdxemployeename");
+		keyMap.put(3, "kdxintelligentscheduling");
+		keyMap.put(4, "kdxpaybycard");
+		keyMap.put(5, "kdxtimeinterval");
+		keyMap.put(6, "kdxworkshift");
+		keyMap.put(7, "kdxclosingtime");
+		keyMap.put(8, "kdxsignintime");
+		keyMap.put(9, "kdxreturntime");
+		keyMap.put(10, "kdxtobe");
+		keyMap.put(11, "kdxtoo");
+		keyMap.put(12, "kdxlatetime");
+		keyMap.put(13, "kdxearlyretreattime");
+		keyMap.put(14, "kdxabsenteeism");
+		keyMap.put(15, "kdxovertime");
+		keyMap.put(16, "kdxworkinghours");
+		keyMap.put(17, "kdxexceptions");
+		keyMap.put(18, "kdxshouldsignin");
+		keyMap.put(19, "kdxshouldsignout");
+		keyMap.put(20, "kdxdepartment");
+		keyMap.put(21, "kdxpeacetime");
+		keyMap.put(22, "kdxweekend");
+		keyMap.put(23, "kdxholiday");
+		keyMap.put(24, "kdxattendancetime");
+		keyMap.put(25, "kdxovertimework");
+		keyMap.put(26, "kdxweekendovertime");
+		keyMap.put(27, "kdxholidayovertime");
 		// 获取每行JSON对象的?
 		JSONArray array = new JSONArray();
 		for(int i = rowStart+1; i <= rowEnd ; i++) {  		
@@ -158,7 +156,7 @@ public class ExcelTool {
 			for (int k = cellStart; k < cellEnd; k++) {
 				if (eachRow != null) {
 					String val = getValue(eachRow.getCell(k), i, k, book, false);
-					sb.append(val);		// �?��数据添加到里面，用于判断该行是否为空
+					sb.append(val);		// 数据添加到里面，用于判断该行是否为空
 					obj.put(keyMap.get(k),val);			
                 }				
 			}
@@ -198,13 +196,15 @@ public class ExcelTool {
 				Date date = cell.getDateCellValue();
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				return df.format(date);
-			}			
+			}	
+			
 			String val = (int)cell.getNumericCellValue()+"";
 			val = String.valueOf(cell.getNumericCellValue());
-              DecimalFormat df = new DecimalFormat("#.#########");
-              val=df.format(Double.valueOf(val));
-		return val;
-		}		
+            DecimalFormat df = new DecimalFormat("#.#########");
+            val=df.format(Double.valueOf(val));
+            return val;
+		}	
+		
 
 		// 1. String类型
 		if (cell.getCellType() == Cell.CELL_TYPE_STRING) {

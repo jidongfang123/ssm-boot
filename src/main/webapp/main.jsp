@@ -1,65 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<jsp:include page="js.jsp"></jsp:include>
-</head>
-<body>
-<div style="margin:0px auto;width:980px;">
-	
-		<br /> <span> <label>姓名：</label> <input id="name"
-			placeholder="请输入姓名" type="text"> </span> <span> <label>性别：</label>
-			<select id="sex" style="height: 24px;width: 163px;">
-				<option value="">请选择性别</option>
-				<option value="1">男</option>
-				<option value="2">女</option>
-		</select> </span> <span> <label>年龄：</label> <input id="age" placeholder="请输入年龄"
-			type="text"> </span>
-		<button class="btn btn-primary" onclick="UserinfoExport()">查询</button>
-		<%-- <form action="${pageContext.request.contextPath}/user/fileUpload" method="post" --%>
-		<form action="${pageContext.request.contextPath}/user/fileUpload" method="post"
-			enctype="multipart/form-data" id="tf">
-			<input id="lefile" type="file" style="display:none" name="file">
-			<div class="input-append" style="position:absolute;;left:1200px;">
-				<input id="photoCover" class="input-large" type="text"
-					readonly="true" style="height:30px;"> <a
-					class="btn btn-primary" onclick="$('input[id=lefile]').click();">选择文件</a>
-				<a class="btn btn-primary" onclick="exceltodata()">导入</a>
-			</div>
-		</form>
-		<script type="text/javascript">
-			$('input[id=lefile]').change(function() {
-				$('#photoCover').val($(this).val());
-			});
-		</script>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<title>导入excel数据到数据库</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-
-		<br />
-		<div class="bs-example" data-example-id="contextual-table">
-			<table class="table table-condensed" style="width:680px">
-				<thead>
-					<tr>
-						<th>名字</th>
-						<th>性别</th>
-						<th>年龄</th>
-					</tr>
-				</thead>
-				<tbody id="userinfoContendiv">
-					<!-- <tr class="info">
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr> -->
-				</tbody>
-			</table>
-		</div>
-
-<table class="table" id="file-table" border="1"></table>
+<script type="text/javascript"
+	src="<%=request.getContextPath() %>/js/jquery-form.js"></script>
+<%-- <jsp:include page="js.jsp"></jsp:include> --%>
 <script type="text/javascript">
-	//页面加载
+ 	//页面加载
 	$(function(){
 		$("#file-table").bootstrapTable({
 			   url:"<%=request.getContextPath()%>/ShowBook.do",
@@ -70,7 +36,7 @@
 			   showRefresh:true,//显示刷新按钮
 			   showToggle:true,//显示切换视图
 			   search:false,//是否显示搜索框
-		//  searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
+			// searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
 			   pagination:true,//开启分页
 			   paginationLoop:true,//开启分页无限循环
 			   pageNumber:1,//当前页数
@@ -135,8 +101,143 @@
 	            title: '文章标题:'+title,
 	            message:'文章内容:'+content
 	        }); 
-	   }
+	   } 
 		
-</script>      
+		//导入excel
+		function exceltodata() {
+			if ($('#photoCover').val() == "") {
+				alert("请先选择文件");
+				return false;
+			}
+
+			var excelname = /^.*\.xlsx$|^.*\.xls$/;
+			if (excelname.test($('#photoCover').val())) {
+				/* //表单提交
+				$("#tf").ajaxSubmit();
+				alert("导入成功"); */
+				//表单提交的第二种方式
+				 $("#tf").ajaxSubmit({
+					type : "post",
+					 url : "<%=request.getContextPath()%>/user/fileUpload.do", 
+					 beforeSubmit : function(formData, jqForm, options) {
+						var flag = confirm("提交之后不能更改，请问您确定要提交吗？");
+						if (flag == false) {
+							return false;
+						}
+						return true;
+					},
+					success : function(data) {
+					alert("上传成功");
+						
+					},
+					error: function(msg) {
+						alert("文件上传失败,请检查您所填写的内容");
+					}
+				}); 
+				
+					$.ajax({
+					  type:'GET',
+					  url:'/ssm/user/exceltodata',
+					  data:{
+					  filepath:getPath($('#photoCover').val())
+					  },
+					  success:function(){
+					  alert("导入成功");
+					  }
+					
+					}); 
+
+			} else {
+				alert("请选择正确的excel文件格式(支持.xlsx或者.xls)");
+			}
+		}
+		
+		function exceldetailed() {
+			if ($('#detailed').val() == "") {
+				alert("请先选择文件");
+				return false;
+			}
+
+			var excelname = /^.*\.xlsx$|^.*\.xls$/;
+			if (excelname.test($('#detailed').val())) {
+				/* //表单提交
+				$("#tf").ajaxSubmit();
+				alert("导入成功"); */
+				//表单提交的第二种方式
+				 $("#tfdetailed").ajaxSubmit({
+					type : "post",
+					 url : "<%=request.getContextPath()%>/user/fileUploadDetailed.do", 
+					beforeSubmit : function(formData, jqForm, options) {
+						var flag = confirm("提交之后不能更改，请问您确定要提交吗？");
+						if (flag == false) {
+							return false;
+						}
+						return true;
+					},
+					success : function(data) {
+					alert("上传成功");
+						
+					},
+					error: function(msg) {
+						alert("文件上传失败,请检查您所填写的内容");
+					}
+				}); 
+				
+					$.ajax({
+					  type:'GET',
+					  url:'/ssm/user/exceltodata',
+					  data:{
+					  filepath:getPath($('#detailed').val())
+					  },
+					  success:function(){
+					  alert("导入成功");
+					  }
+					
+					}); 
+
+			} else {
+				alert("请选择正确的excel文件格式(支持.xlsx或者.xls)");
+			}
+		}	
+		
+</script>  
+
+</head>
+<body>
+ <center>
+		<div class="input-append"  style="padding-top: 50">
+				<input id="photoCover" class="input-large" type="text"
+					readonly="true" style="height:30px;"> 
+					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">请选择汇总表</a>
+				<a class="btn btn-primary" onclick="exceltodata()">导入</a>
+			</div>
+			<div class="input-append"  style="padding-top: 50">
+				<input id="detailed" class="input-large" type="text"
+					readonly="true" style="height:30px;"> 
+					<a class="btn btn-primary" onclick="$('input[id=lefiletfdetailed]').click();">请选择明细表</a>
+				<a class="btn btn-primary" onclick="exceldetailed()">导入</a>
+			</div>	
+			</center>
+	<!-- 查询列表容器 -->		
+<table class="table" id="file-table" border="1"></table>
+
+<!-- 明细表单数据提交 -->
+<form action="${pageContext.request.contextPath}/user/fileUpload.do" method="post"enctype="multipart/form-data" id="tfdetailed">
+	<input id=lefiletfdetailed type="file" style="display:none" name="file">			
+</form>
+<!-- 汇总表单数据提交 -->
+<form action="${pageContext.request.contextPath}/user/fileUpload.do" method="post"enctype="multipart/form-data" id="tf">
+	<input id="lefile" type="file" style="display:none" name="file">			
+</form>
+<script type="text/javascript">
+		//选择的Excel对应input框
+		$('input[id=lefile]').change(function() {
+			$('#photoCover').val($(this).val());
+		});
+		$('input[id=lefiletfdetailed]').change(function() {
+			$('#detailed').val($(this).val());
+		});
+</script> 
+ 
 </body>
 </html>

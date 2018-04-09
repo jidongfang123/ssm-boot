@@ -1,46 +1,38 @@
 package com.kdx.service;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kdx.mapper.UserMapper;
-import com.kdx.pojo.User;
+import com.kdx.mapper.DetailedMapper;
+import com.kdx.mapper.KdxMapper;
+import com.kdx.pojo.Detailed;
+import com.kdx.pojo.Kdx;
 
 
 @Service("userService")
 public class UserServiceiml implements UserService {
 
-	@Resource
-	private UserMapper Userdao;
-	
-	  
-    @Override  
-    public List<User> getUserForExcel(User user) {  
-        List<User> list = Userdao.getUserForExcel(user);  
-        Integer order;  
-        for (int i = 0; i < list.size(); i++) {  
-            order = i + 1;  
-            list.get(i).setOrder(order.toString());  
-            if (list.get(i).getStudentsex().equals("1")) {  
-                list.get(i).setStudentsex("��");  
-            } else {  
-                list.get(i).setStudentsex("Ů"); 
-            }  
-        }  
-        return list;  
-    }
+	@Autowired
+	private KdxMapper kdxMapper;
+	@Autowired
+	private DetailedMapper detailedMapper;
 
 
-    @Override
-	public int insertStudentlist(List<User> userlist) {
-		// TODO Auto-generated method stub
-		int count=Userdao.insertStudentlist(userlist);
+	@Override 
+	public int insertSelective(List<Kdx> kdxlist) {
+			int count=kdxMapper.insertSelective(kdxlist);
+			System.out.println("导入成功");
+			return count;
+	}
+
+
+	@Override
+	public int insertDetailed(List<Detailed> detailed) {
+		int count = detailedMapper.insertDetailed(detailed);
+		System.out.println("导入成功");
+		System.out.println(count);
 		return count;
-	}  
-
-
-    
+	}
 
 }

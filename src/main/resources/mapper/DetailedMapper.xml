@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kdx.mapper.DetailedMapper">
+  <resultMap id="BaseResultMap" type="com.kdx.pojo.Detailed">
+    <id column="detailedid" jdbcType="INTEGER" property="detailedid" />
+    <result column="kdxemployeenumber" jdbcType="INTEGER" property="kdxemployeenumber" />
+    <result column="kdxworkattendance" jdbcType="INTEGER" property="kdxworkattendance" />
+    <result column="kdxemployeename" jdbcType="VARCHAR" property="kdxemployeename" />
+    <result column="kdxIntelligentscheduling" jdbcType="VARCHAR" property="kdxintelligentscheduling" />
+    <result column="kdxpaybycard" jdbcType="VARCHAR" property="kdxpaybycard" />
+    <result column="kdxtimeinterval" jdbcType="VARCHAR" property="kdxtimeinterval" />
+    <result column="kdxworkshift" jdbcType="VARCHAR" property="kdxworkshift" />
+    <result column="kdxclosingtime" jdbcType="VARCHAR" property="kdxclosingtime" />
+    <result column="kdxsignintime" jdbcType="VARCHAR" property="kdxsignintime" />
+    <result column="kdxreturntime" jdbcType="VARCHAR" property="kdxreturntime" />
+    <result column="kdxtobe" jdbcType="VARCHAR" property="kdxtobe" />
+    <result column="kdxtoo" jdbcType="VARCHAR" property="kdxtoo" />
+    <result column="kdxlatetime" jdbcType="VARCHAR" property="kdxlatetime" />
+    <result column="kdxearlyretreattime" jdbcType="VARCHAR" property="kdxearlyretreattime" />
+    <result column="kdxabsenteeism" jdbcType="VARCHAR" property="kdxabsenteeism" />
+    <result column="kdxovertime" jdbcType="VARCHAR" property="kdxovertime" />
+    <result column="kdxworkinghours" jdbcType="VARCHAR" property="kdxworkinghours" />
+    <result column="kdxexceptions" jdbcType="VARCHAR" property="kdxexceptions" />
+    <result column="kdxshouldsignin" jdbcType="VARCHAR" property="kdxshouldsignin" />
+    <result column="kdxshouldsignout" jdbcType="VARCHAR" property="kdxshouldsignout" />
+    <result column="kdxdepartment" jdbcType="VARCHAR" property="kdxdepartment" />
+    <result column="kdxpeacetime" jdbcType="VARCHAR" property="kdxpeacetime" />
+    <result column="kdxweekend" jdbcType="VARCHAR" property="kdxweekend" />
+    <result column="kdxholiday" jdbcType="VARCHAR" property="kdxholiday" />
+    <result column="kdxattendancetime" jdbcType="VARCHAR" property="kdxattendancetime" />
+    <result column="kdxovertimework" jdbcType="VARCHAR" property="kdxovertimework" />
+    <result column="kdxweekendovertime" jdbcType="VARCHAR" property="kdxweekendovertime" />
+    <result column="kdxholidayovertime" jdbcType="VARCHAR" property="kdxholidayovertime" />
+  </resultMap>
+  <insert id="insertDetailed" parameterType="java.util.List">
+    insert into detailed (detailedid, kdxemployeenumber, kdxworkattendance, 
+      kdxemployeename, kdxIntelligentscheduling, 
+      kdxpaybycard, kdxtimeinterval, 
+      kdxworkshift, kdxclosingtime, kdxsignintime, 
+      kdxreturntime, kdxtobe, kdxtoo, 
+      kdxlatetime, kdxearlyretreattime, kdxabsenteeism, 
+      kdxovertime, kdxworkinghours, kdxexceptions, 
+      kdxshouldsignin, kdxshouldsignout, kdxdepartment, 
+      kdxpeacetime, kdxweekend, kdxholiday, 
+      kdxattendancetime, kdxovertimework, kdxweekendovertime, 
+      kdxholidayovertime)
+    values 
+     <foreach collection="list" index="index" item="item" separator=",">
+    (#{item.detailedid,jdbcType=INTEGER}, #{item.kdxemployeenumber,jdbcType=INTEGER}, #{item.kdxworkattendance,jdbcType=INTEGER}, 
+      #{item.kdxemployeename,jdbcType=VARCHAR}, #{item.kdxintelligentscheduling,jdbcType=VARCHAR}, 
+      #{item.kdxpaybycard,jdbcType=VARCHAR}, #{item.kdxtimeinterval,jdbcType=VARCHAR}, 
+      #{item.kdxworkshift,jdbcType=VARCHAR}, #{item.kdxclosingtime,jdbcType=VARCHAR}, #{item.kdxsignintime,jdbcType=VARCHAR}, 
+      #{item.kdxreturntime,jdbcType=VARCHAR}, #{item.kdxtobe,jdbcType=VARCHAR}, #{item.kdxtoo,jdbcType=VARCHAR}, 
+      #{item.kdxlatetime,jdbcType=VARCHAR}, #{item.kdxearlyretreattime,jdbcType=VARCHAR}, #{item.kdxabsenteeism,jdbcType=VARCHAR}, 
+      #{item.kdxovertime,jdbcType=VARCHAR}, #{item.kdxworkinghours,jdbcType=VARCHAR}, #{item.kdxexceptions,jdbcType=VARCHAR}, 
+      #{item.kdxshouldsignin,jdbcType=VARCHAR}, #{item.kdxshouldsignout,jdbcType=VARCHAR}, #{item.kdxdepartment,jdbcType=VARCHAR}, 
+      #{item.kdxpeacetime,jdbcType=VARCHAR}, #{item.kdxweekend,jdbcType=VARCHAR}, #{item.kdxholiday,jdbcType=VARCHAR}, 
+      #{item.kdxattendancetime,jdbcType=VARCHAR}, #{item.kdxovertimework,jdbcType=VARCHAR}, #{item.kdxweekendovertime,jdbcType=VARCHAR}, 
+      #{item.kdxholidayovertime,jdbcType=VARCHAR})
+       </foreach>
+  </insert>
+  
+</mapper>
